@@ -34,18 +34,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rotas
-app.include_router(policies_router)
-app.include_router(comparison_router)
-app.include_router(chat_router)
-
-# Estáticos
-app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")
-app.mount("/artefatos", StaticFiles(directory=str(ARTEFATOS_DIR)), name="artefatos")
-
-if FRONTEND_DIST.exists():
-    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="frontend")
-
+# Health endpoint (declarado antes dos mounts para ter prioridade de roteamento)
 @app.get("/health")
 def health_check():
     storage = StorageService()
@@ -58,3 +47,15 @@ def health_check():
         "comparisons_stored": comparisons_count,
         "version": "1.0.0"
     }
+
+# Rotas da API
+app.include_router(policies_router)
+app.include_router(comparison_router)
+app.include_router(chat_router)
+
+# Estáticos e Frontend (o mount "/" deve ser obrigatoriamente o último)
+app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")
+app.mount("/artefatos", StaticFiles(directory=str(ARTEFATOS_DIR)), name="artefatos")
+
+if FRONTEND_DIST.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="frontend")
