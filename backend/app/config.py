@@ -3,6 +3,24 @@ import os
 
 # Root do projeto: "Projeto Final"
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+ENV_FILE = PROJECT_ROOT / ".env"
+
+# Carregar variáveis de ambiente do .env
+try:
+    from dotenv import load_dotenv
+    if ENV_FILE.exists():
+        load_dotenv(dotenv_path=ENV_FILE)
+except ImportError:
+    if ENV_FILE.exists():
+        with open(ENV_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip('"').strip("'")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
 
 DATA_DIR = PROJECT_ROOT / "data"
 SAMPLES_DIR = DATA_DIR / "samples"

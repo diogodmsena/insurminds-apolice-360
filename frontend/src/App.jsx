@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Shield, Scale, MessageSquare, Cpu, FolderArchive, UploadCloud, 
+  Shield, Scale, MessageSquare, Cpu, UploadCloud, 
   CheckCircle2, AlertCircle, Sparkles, ArrowRight, FileText, 
   ExternalLink, Trash2, Eye, RefreshCw, BarChart3, HelpCircle,
-  Award, TrendingUp, Check, Layers, PlayCircle, Download
+  Award, TrendingUp, Check, Layers
 } from 'lucide-react';
 import PolicyModal from './components/PolicyModal';
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('policies');
@@ -293,13 +293,6 @@ export default function App() {
           onClick={() => setActiveTab('architecture')}
         >
           <Cpu size={18} /> Arquitetura Multiagente
-        </button>
-
-        <button 
-          className={`nav-tab-btn ${activeTab === 'artifacts' ? 'active' : ''}`}
-          onClick={() => setActiveTab('artifacts')}
-        >
-          <FolderArchive size={18} /> Entregáveis I2A2 (PDF/PPTX/MP4)
         </button>
       </div>
 
@@ -943,87 +936,6 @@ export default function App() {
         </div>
       )}
 
-      {/* TAB 5: DELIVERABLES (PDF/PPTX/MP4) */}
-      {activeTab === 'artifacts' && (
-        <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{
-            background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)',
-            padding: '24px'
-          }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
-              Central de Entregáveis Oficiais (I2A2)
-            </h3>
-            <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '24px' }}>
-              Todos os artefatos formais exigidos na especificação do projeto depositados na pasta padronizada <code>Projeto_Final_Artefatos/</code>.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
-              {/* Deliverable 1: Relatório Técnico */}
-              <div style={{ background: 'var(--bg-main)', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                    <FileText size={24} color="#38bdf8" />
-                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)' }}>Relatório Técnico (PDF)</h4>
-                  </div>
-                  <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.5', marginBottom: '14px' }}>
-                    Documento formal abrangendo arquitetura da solução, tecnologias, agentes, fluxo de processamento, justificativas arquiteturais, limitações e roadmap.
-                  </p>
-                  <span style={{ fontSize: '12px', color: 'var(--accent-cyan)', fontFamily: 'monospace' }}>
-                    InsurMinds_Relatorio_Tecnico.pdf
-                  </span>
-                </div>
-                <div style={{ marginTop: '16px' }}>
-                  <a href={`${API_BASE}/artefatos/InsurMinds_Relatorio_Tecnico.pdf`} target="_blank" rel="noreferrer" className="btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
-                    <Download size={16} /> Baixar Relatório Técnico
-                  </a>
-                </div>
-              </div>
-
-              {/* Deliverable 2: Pitch Deck PPTX */}
-              <div style={{ background: 'var(--bg-main)', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                    <BarChart3 size={24} color="#f59e0b" />
-                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)' }}>Pitch Deck Executivo (PPTX)</h4>
-                  </div>
-                  <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.5', marginBottom: '14px' }}>
-                    Apresentação corporativa formatada conforme as diretrizes do Sebrae para pitch decks, cobrindo problema, solução, mercado D&O e diferenciais de IA.
-                  </p>
-                  <span style={{ fontSize: '12px', color: '#f59e0b', fontFamily: 'monospace' }}>
-                    InsurMinds_Projeto_Final.pptx
-                  </span>
-                </div>
-                <div style={{ marginTop: '16px' }}>
-                  <a href={`${API_BASE}/artefatos/InsurMinds_Projeto_Final.pptx`} target="_blank" rel="noreferrer" className="btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
-                    <Download size={16} /> Baixar Apresentação PPTX
-                  </a>
-                </div>
-              </div>
-
-              {/* Deliverable 3: Vídeo Demonstrativo */}
-              <div style={{ background: 'var(--bg-main)', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                    <PlayCircle size={24} color="#10b981" />
-                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)' }}>Vídeo de Demonstração (MP4)</h4>
-                  </div>
-                  <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.5', marginBottom: '14px' }}>
-                    Demonstração audiovisual com duração máxima de 5 minutos, apresentando o problema, arquitetura, execução da plataforma e principais resultados.
-                  </p>
-                  <span style={{ fontSize: '12px', color: '#10b981', fontFamily: 'monospace' }}>
-                    InsurMinds_Projeto_Final.mp4
-                  </span>
-                </div>
-                <div style={{ marginTop: '16px' }}>
-                  <a href={`${API_BASE}/artefatos/InsurMinds_Projeto_Final.mp4`} target="_blank" rel="noreferrer" className="btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
-                    <PlayCircle size={16} /> Acessar Arquivo de Vídeo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Policy Modal */}
       {activeModalPolicy && (

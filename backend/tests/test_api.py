@@ -42,3 +42,19 @@ def test_chat_api():
     chat_data = chat_res.json()
     assert "answer" in chat_data
     assert len(chat_data["answer"]) > 20
+
+def test_upload_policy_api():
+    import os
+    from backend.app.config import SAMPLES_DIR
+    sample_file = os.path.join(SAMPLES_DIR, "apolice_alpha_dno_standard.pdf")
+    with open(sample_file, "rb") as f:
+        response = client.post(
+            "/api/policies/upload",
+            files={"file": ("test_upload_alpha.pdf", f, "application/pdf")}
+        )
+    assert response.status_code == 200
+    data = response.json()
+    assert "id" in data
+    assert data["insurer_name"] != ""
+    # Clean up uploaded test policy
+    client.delete(f"/api/policies/{data['id']}")

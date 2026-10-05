@@ -9,6 +9,9 @@ venv/
 ENV/
 .venv/
 *.sqlite3
+.env
+.env.local
+data/uploads/
 
 # Node / Frontend
 node_modules/

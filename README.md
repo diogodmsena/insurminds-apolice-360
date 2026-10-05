@@ -181,9 +181,11 @@ Conforme especificado na página 22 do edital do I2A2, todos os artefatos formai
 
 ## 👥 8. Identificação dos Integrantes
 
-**Equipe InsurMinds - Turma de Inteligência Artificial Aplicada (I2A2):**
-- Diogo (Líder Técnico & Engenheiro de IA)
-- Equipe InsurMinds
+**Equipe Seguros CloudIO:**
+• Adolfo López 
+• Diogo Sena 
+• Isabel Beneyto 
+• Jessica Bastos 
 
 ---
 

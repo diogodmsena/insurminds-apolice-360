@@ -54,12 +54,12 @@ async def upload_policy(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Formato não suportado. Envie um arquivo PDF ou Imagem.")
 
     unique_filename = f"{uuid.uuid4().hex[:8]}_{file.filename}"
-    file_path = os.path.join(UPLOAD_DIR, unique_filename)
-
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    file_path = os.path.join(UPLOADS_DIR, unique_filename)
 
     try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
         # Pipeline Multiagente
         ingestion_res = ingestion_agent.run(file_path)
         extraction_dict = extraction_agent.run(ingestion_res)
@@ -68,6 +68,8 @@ async def upload_policy(file: UploadFile = File(...)):
         # Persistência
         storage_service.save_policy(validated_policy)
         return validated_policy
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro no processamento da apólice: {str(e)}")
 
