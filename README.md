@@ -95,7 +95,7 @@ flowchart TD
 
 1. **Clonar o Repositório**:
    ```bash
-   git clone https://github.com/usuario/insurminds-apolice-360.git
+   git clone https://github.com/diogodmsena/insurminds-apolice-360.git
    cd insurminds-apolice-360
    ```
 
