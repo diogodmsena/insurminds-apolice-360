@@ -33,26 +33,26 @@ flowchart TD
     subgraph UI["Camada de Apresentação (Frontend React + Vite)"]
         A1["Dashboard de Apólices"]
         A2["Raio-X da Apólice (Modal)"]
-        A3["Comparador Multidimensional & Gaps"]
+        A3["Comparador Multidimensional e Gaps"]
         A4["Consultor Especialista (Q&A)"]
     end
 
-    subgraph API["Camada de Exposição & Serviços (FastAPI Backend)"]
+    subgraph API["Camada de Exposição e Serviços (FastAPI Backend)"]
         B1["Endpoints REST (/api/policies, /api/compare, /api/chat)"]
-        B2["Validação Pydantic & Lifespan Handler"]
+        B2["Validação Pydantic e Lifespan Handler"]
     end
 
     subgraph AGENTS["Ecossistema Multiagente Especializado"]
         C1["1. Ingestion & OCR Agent (PyMuPDF / Tesseract)"]
-        C2["2. Extraction Agent (LLM Gemini / OpenAI / Schema D&O)"]
+        C2["2. Extraction Agent (LLM Gemini / OpenAI / Schema DeO)"]
         C3["3. Validation Agent (Compliance SUSEP 553 / Score)"]
         C4["4. Comparison Agent (Matriz de Gaps / Scorecards 0-100)"]
-        C5["5. Q&A Consultant Agent (RAG / Citação de Cláusulas)"]
+        C5["5. QeA Consultant Agent (RAG / Citação de Cláusulas)"]
     end
 
-    subgraph PERSISTENCE["Armazenamento & Dados"]
+    subgraph PERSISTENCE["Armazenamento e Dados"]
         D1[("SQLite3 - Dados Estruturados de Apólices")]
-        D2[("Histórico de Comparações & Chat")]
+        D2[("Histórico de Comparações e Chat")]
         D3["Storage Local de PDFs e Amostras SUSEP"]
     end
 
@@ -135,7 +135,7 @@ flowchart TD
 
 ## 🚀 5. Instruções de Execução
 
-### Opção 1: Execução Completa (Backend FastAPI + Frontend React)
+### Execução Completa (Backend FastAPI + Frontend React)
 
 1. **Iniciar o Backend FastAPI**:
    ```bash
@@ -175,17 +175,13 @@ Conforme especificado na página 22 do edital do I2A2, todos os artefatos formai
 | **Relatório Técnico (PDF)** | `InsurMinds_Relatorio_Tecnico.pdf` | Documento formal contendo arquitetura, justificativas, fluxo, agentes, limitações e roadmap |
 | **Apresentação Pitch Deck** | `InsurMinds_Projeto_Final.pptx` | Slides executivos seguindo as diretrizes do Sebrae para pitches de alto impacto |
 | **Vídeo de Apresentação** | `InsurMinds_Projeto_Final.mp4` | Vídeo demonstrando problema, arquitetura, execução da plataforma e principais resultados (< 5 min) |
-| **Roteiro do Vídeo** | `ROTEIRO_VIDEO_DEMO.md` | Guia completo de locução e minutagem (0:00 a 4:45) |
 
 ---
 
 ## 👥 8. Identificação dos Integrantes
 
 **Equipe Seguros CloudIO:**
-• Adolfo López 
-• Diogo Sena 
-• Isabel Beneyto 
-• Jessica Bastos 
+• Diogo David Macêdo Sena
 
 ---
 
