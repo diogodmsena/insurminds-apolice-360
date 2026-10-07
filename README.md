@@ -34,7 +34,7 @@ flowchart TD
         A1["Dashboard de Apólices"]
         A2["Raio-X da Apólice (Modal)"]
         A3["Comparador Multidimensional e Gaps"]
-        A4["Consultor Especialista (Q&A)"]
+        A4["Consultor Especialista (QeA)"]
     end
 
     subgraph API["Camada de Exposição e Serviços (FastAPI Backend)"]
@@ -43,7 +43,7 @@ flowchart TD
     end
 
     subgraph AGENTS["Ecossistema Multiagente Especializado"]
-        C1["1. Ingestion & OCR Agent (PyMuPDF / Tesseract)"]
+        C1["1. Ingestion e OCR Agent (PyMuPDF / Tesseract)"]
         C2["2. Extraction Agent (LLM Gemini / OpenAI / Schema DeO)"]
         C3["3. Validation Agent (Compliance SUSEP 553 / Score)"]
         C4["4. Comparison Agent (Matriz de Gaps / Scorecards 0-100)"]
